@@ -28,3 +28,5 @@ while True :
         list.remove(list[int(Choix_suppression)])
     if Choix == "4":
         break
+    else :
+        print("Choix invalide...")
