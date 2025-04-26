@@ -1,7 +1,6 @@
 #Pylist V1
 #Axel INGRAO
 #GPL Licence
-from datetime import datetime
 #Functions 
 def Module_affichage():
     print("Bienvenue dans Pylist")
@@ -11,9 +10,7 @@ def Module_affichage():
     print("3 = supprimer une tâches")
     print("4 = Sortie")
 def Module_fichier(Liste_Saved):
-    Date_AJD=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-    Nom_fichier=str(Date_AJD)+".txt"
-    with open(Nom_fichier,"w") as fichier:
+    with open("config.cfg","w") as fichier:
         fichier.write(Liste_Saved)
 #Déclation des variables
 list = []
