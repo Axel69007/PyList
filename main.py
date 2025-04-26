@@ -16,17 +16,18 @@ module_affichage()
 #Boucle infinie du programme
 while True :
     Choix=(input("Entrez votre choix : "))
-    if Choix =="1":
-        list.append(input("entrez le nom de la tâche : "))
-    elif Choix =="2":
-        Compteur_liste=0
-        for i in list :
-            print(str(Compteur_liste)+" "+ i)
-            Compteur_liste=Compteur_liste+1
-    elif Choix =="3":
-        Choix_suppression=input("Entrez l'index de la tâches à supprimer : ")
-        list.remove(list[int(Choix_suppression)])
-    elif Choix == "4":
-        break
-    else :
-        print("Choix invalide...")
+    match Choix:
+        case "1":
+            list.append(input("entrez le nom de la tâche : "))
+        case "2":
+            Compteur_liste=0
+            for i in list :
+                print(str(Compteur_liste)+" "+ i)
+                Compteur_liste=Compteur_liste+1
+        case"3":
+            Choix_suppression=input("Entrez l'index de la tâches à supprimer : ")
+            list.remove(list[int(Choix_suppression)])
+        case"4":
+            break
+        case _:
+            print("Choix invalide...")
