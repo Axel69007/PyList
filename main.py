@@ -18,15 +18,15 @@ while True :
     Choix=(input("Entrez votre choix : "))
     if Choix =="1":
         list.append(input("entrez le nom de la tâche : "))
-    if Choix =="2":
+    elif Choix =="2":
         Compteur_liste=0
         for i in list :
             print(str(Compteur_liste)+" "+ i)
             Compteur_liste=Compteur_liste+1
-    if Choix =="3":
+    elif Choix =="3":
         Choix_suppression=input("Entrez l'index de la tâches à supprimer : ")
         list.remove(list[int(Choix_suppression)])
-    if Choix == "4":
+    elif Choix == "4":
         break
     else :
         print("Choix invalide...")
