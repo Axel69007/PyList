@@ -1,7 +1,8 @@
 #Pylist V1
 #Axel INGRAO
 #GPL Licence
-#Functions 
+import os
+#Déclaration des fonctions 
 #Module simple d'affichage
 def Module_affichage():
     print("Bienvenue dans Pylist")
@@ -10,7 +11,11 @@ def Module_affichage():
     print("2 = Voir les tâches")
     print("3 = supprimer une tâches")
     print("4 = Sortie")
-#Module écriture en fin de switch pour sauvegardé variable data
+#Module création du fichier config
+def Module_creation():
+    with open("config.cfg","w") as fichier:
+        print("Création du fichier config.cfg")
+#Module écriture du tableau data dans le fichier cfg
 def Module_fichier(Liste_Saved):
     with open("config.cfg","w") as fichier:
         for tache in Liste_Saved:
@@ -23,8 +28,10 @@ def Module_lecture():
         for ligne in Raw_Lignes:
             Lignes.append(ligne.strip())
         return Lignes
-
-#Déclation des variables
+#Vérification de la présence de config.cfg
+if not os.path.isfile("config.cfg"):
+    Module_creation()
+#Initialisation du tableau data avec la lecture du fichier
 data=Module_lecture()
 #Appel fonction
 Module_affichage()
