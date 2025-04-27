@@ -2,6 +2,7 @@
 #Axel INGRAO
 #GPL Licence
 #Functions 
+#Module simple d'affichage
 def Module_affichage():
     print("Bienvenue dans Pylist")
     print("Entrez ce que vous voulez faire :")
@@ -9,11 +10,22 @@ def Module_affichage():
     print("2 = Voir les tâches")
     print("3 = supprimer une tâches")
     print("4 = Sortie")
+#Module écriture en fin de switch pour sauvegardé variable data
 def Module_fichier(Liste_Saved):
     with open("config.cfg","w") as fichier:
-        fichier.write(Liste_Saved)
+        for tache in Liste_Saved:
+            fichier.write(tache + "\n")
+#Module lecture du fichier config.cfg 
+def Module_lecture():
+    with open("config.cfg") as fichier1:
+        Raw_Lignes=(fichier1.readlines())
+        Lignes=[]
+        for ligne in Raw_Lignes:
+            Lignes.append(ligne.strip())
+        return Lignes
+
 #Déclation des variables
-list = []
+data=Module_lecture()
 #Appel fonction
 Module_affichage()
 #Boucle infinie du programme
@@ -21,17 +33,17 @@ while True :
     Choix=(input("Entrez votre choix : "))
     match Choix:
         case "1":
-            list.append(input("entrez le nom de la tâche : "))
+            data.append(input("entrez le nom de la tâche : "))
         case "2":
             Compteur_liste=0
-            for i in list :
+            for i in data :
                 print(str(Compteur_liste)+" "+ i)
                 Compteur_liste=Compteur_liste+1
         case"3":
             Choix_suppression=input("Entrez l'index de la tâches à supprimer : ")
-            list.remove(list[int(Choix_suppression)])
+            data.remove(data[int(Choix_suppression)])
         case"4":
-            Module_fichier(str(list))
+            Module_fichier(data)
             break
         case _:
             print("Choix invalide...")
