@@ -2,6 +2,7 @@
 #Axel INGRAO
 #GPL Licence
 import os
+from tkinter import *
 #Déclaration des fonctions 
 #Module simple d'affichage
 def Module_affichage():
