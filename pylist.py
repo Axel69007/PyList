@@ -5,7 +5,9 @@ import os
 #Déclaration des fonctions 
 #Module simple d'affichage
 def Module_affichage():
+    print("-----------------------------------")
     print("Bienvenue dans Pylist")
+    print("-----------------------------------")
     print("Entrez ce que vous voulez faire :")
     print("1 = Ajoutez une tâche")
     print("2 = Voir les tâches")
@@ -44,7 +46,7 @@ while True :
         case "2":
             Compteur_liste=0
             for i in data :
-                print(str(Compteur_liste)+" "+ i)
+                print(str(Compteur_liste)+". "+ i)
                 Compteur_liste=Compteur_liste+1
         case"3":
             Choix_suppression=input("Entrez l'index de la tâches à supprimer : ")
