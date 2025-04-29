@@ -11,7 +11,9 @@ def Ajout_tache():
 def Afficher_tâche():
     Top_fenêtre = Toplevel(root)
     Top_fenêtre.minsize(300, 250)
-    Label(Top_fenêtre, text=data).pack()
+    text_data = "\n".join(data)
+    text_data = text_data.title()
+    Label(Top_fenêtre, text=text_data).pack()
 
 
 data = []
