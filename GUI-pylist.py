@@ -12,7 +12,20 @@ def Ajout_tache():
 def Afficher_tache():
     Top_fenêtre = Toplevel(root)
     Top_fenêtre.minsize(300, 250)
-    text_data = "\n".join(f"{i}. {tache}" for i, tache in enumerate(data))
+    # text_data = "\n".join(f"{i}. {tache}" for i, tache in enumerate(data))
+    ### option 1
+    text_data = ""
+    dataIndex = 0
+    for dataValue in data:
+        text_data = text_data + str(dataIndex) + ". " + dataValue + "\n"
+        dataIndex = dataIndex + 1
+    ###
+    ### option 2
+    #text_data = ""
+    #for dataIndex, dataValue in enumerate(data):
+    #    text_data = text_data + dataIndex + ". " + dataValue + "\n"
+    #    dataIndex = dataIndex + 1
+    ###
     Label(Top_fenêtre, text=text_data).pack()
 
 def Supprimer_tache():
