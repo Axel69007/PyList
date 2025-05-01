@@ -4,14 +4,15 @@ from tkinter import simpledialog
 import tkinter as tk
 
 #Déclaration variable
-def Ajout_tache():
-    Demande = simpledialog.askstring("Ajout d'une nouvelle tâche","Entrez le nom de la tâche : ")
-    if Demande:
-        data.append(Demande)
+def ajout_tache():
+    demande = simpledialog.askstring("Ajout d'une nouvelle tâche","Entrez le nom de la tâche : ")
+    if demande:
+        data.append(demande)
 
-def Afficher_tache():
-    Top_fenêtre = Toplevel(root)
-    Top_fenêtre.minsize(300, 250)
+def afficher_tache():
+    top_fenetre = Toplevel(root)
+    top_fenetre.minsize(300, 250)
+    ### option GPT
     # text_data = "\n".join(f"{i}. {tache}" for i, tache in enumerate(data))
     ### option 1
     text_data = ""
@@ -26,12 +27,12 @@ def Afficher_tache():
     #    text_data = text_data + dataIndex + ". " + dataValue + "\n"
     #    dataIndex = dataIndex + 1
     ###
-    Label(Top_fenêtre, text=text_data).pack()
+    Label(top_fenetre, text=text_data).pack()
 
-def Supprimer_tache():
-    Top_fenêtre = Toplevel(root)
-    Top_fenêtre.minsize(300, 250)
-    my_listbox = Listbox(Top_fenêtre)
+def supprimer_tache():
+    top_fenetre = Toplevel(root)
+    top_fenetre.minsize(300, 250)
+    my_listbox = Listbox(top_fenetre)
     my_listbox.pack(pady=15)
     def suppression():
         selection = my_listbox.curselection()
@@ -41,7 +42,7 @@ def Supprimer_tache():
             del data[index]
     for item in data:
         my_listbox.insert(END, item)
-    my_button= Button(Top_fenêtre, text="Supprimer", command= suppression)
+    my_button= Button(top_fenetre, text="Supprimer", command= suppression)
     my_button.pack(side=BOTTOM,pady=10)
         
 def quitter_programme():
@@ -60,29 +61,30 @@ root = Tk()
 
 #Paramètre fenêtre
 root.title("PyList GUI V1")
-root.minsize(300, 250)
+root.minsize(350, 300)
+root.maxsize(350, 300)
 
-#Création Boite_Titre
-Boite_Titre = Frame(root)
-Boite_Bouton = Frame(root)
+#Création boite_titre
+boite_titre = Frame(root)
+boite_bouton = Frame(root)
 
 #label text
-label_bienvenue = Label(Boite_Titre, text="Bienvenue dans Pylist GUI \n ----------------------------------", font=("Helvetica"))
-label_bienvenue.pack()
+label_bienvenue = Label(master= boite_titre, text="Bienvenue dans Pylist GUI ", font="Helvetica 18 bold")
+label_bienvenue.pack(pady= 15)
 
 #Boutons
-Bouton_Ajouter = Button(Boite_Bouton, text="Ajoutez une tâche",command=Ajout_tache)
-Bouton_Ajouter.pack()
-Bouton_Voir = Button(Boite_Bouton, text="Voir les tâches",command=Afficher_tache)
-Bouton_Voir.pack()
-Bouton_Supprimer = Button(Boite_Bouton, text="Supprimer les tâches",command=Supprimer_tache)
-Bouton_Supprimer.pack()
-Bouton_Quitter = Button(Boite_Bouton, text="Quitter programe",command=quitter_programme)
-Bouton_Quitter.pack()
+bouton_ajouter = Button(boite_bouton, text="Ajoutez une tâche", font="Helvetica 12" ,command=ajout_tache)
+bouton_ajouter.pack(pady= 5)
+bouton_voir = Button(boite_bouton, text="Voir les tâches",font="Helvetica 12" ,command=afficher_tache)
+bouton_voir.pack(pady= 5)
+bouton_supprimer = Button(boite_bouton, text="Supprimer les tâches",font="Helvetica 12" ,command=supprimer_tache)
+bouton_supprimer.pack(pady= 5)
+bouton_quitter = Button(boite_bouton, text="Quitter programe",font="Helvetica 12" ,command=quitter_programme)
+bouton_quitter.pack(pady= 5)
 
 #Frame
-Boite_Titre.pack()
-Boite_Bouton.pack()
+boite_titre.pack(side=TOP)
+boite_bouton.pack()
 
 #Main loop
 root.mainloop()
