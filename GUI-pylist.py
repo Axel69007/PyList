@@ -56,7 +56,10 @@ def afficher_tache():
 def supprimer_tache():
     top_fenetre = Toplevel(root)
     top_fenetre.minsize(300, 250)
-    my_listbox = Listbox(top_fenetre)
+    my_scrollbar = Scrollbar(top_fenetre, orient=VERTICAL)
+    my_listbox = Listbox(top_fenetre, width=30, yscrollcommand=my_scrollbar.set)
+    my_scrollbar.config(command=my_listbox.yview)
+    my_scrollbar.pack(side=RIGHT, fill=Y)
     my_listbox.pack(pady=15)
     def suppression():
         selection = my_listbox.curselection()
