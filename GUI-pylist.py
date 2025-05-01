@@ -2,12 +2,36 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import simpledialog
 import tkinter as tk
+import os
+
+#Module création du fichier config
+def module_creation():
+    with open("config.cfg","w") as fichier:
+        pass
+#Module écriture du tableau data dans le fichier cfg
+def module_fichier(Liste_Saved):
+    with open("config.cfg","w") as fichier:
+        for tache in Liste_Saved:
+            fichier.write(tache + "\n")
+#Module lecture du fichier config.cfg 
+def module_lecture():
+    with open("config.cfg") as fichier1:
+        Raw_Lignes=(fichier1.readlines())
+        Lignes=[]
+        for ligne in Raw_Lignes:
+            Lignes.append(ligne.strip())
+        return Lignes
+#Vérification de la présence de config.cfg
+def check_fichier():
+    if not os.path.isfile("config.cfg"):
+        module_creation()
 
 #Déclaration variable
 def ajout_tache():
     demande = simpledialog.askstring("Ajout d'une nouvelle tâche","Entrez le nom de la tâche : ")
     if demande:
         data.append(demande)
+        module_fichier(data)
 
 def afficher_tache():
     top_fenetre = Toplevel(root)
@@ -48,10 +72,11 @@ def supprimer_tache():
 def quitter_programme():
     root.destroy()
 
-
+#Check du fichier
+check_fichier()
 
 #initialisation de data
-data = []
+data = module_lecture()
 
 #Création fenëtre
 root = Tk()
