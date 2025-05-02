@@ -36,22 +36,15 @@ def ajout_tache():
 def afficher_tache():
     top_fenetre = Toplevel(root)
     top_fenetre.minsize(300, 250)
-    ### option GPT
-    # text_data = "\n".join(f"{i}. {tache}" for i, tache in enumerate(data))
-    ### option 1
-    text_data = ""
+    my_scrollbar = Scrollbar(top_fenetre, orient=VERTICAL)
+    my_listbox = Listbox(top_fenetre, width=30, yscrollcommand=my_scrollbar.set, selectmode=NONE)
+    my_scrollbar.pack(side=RIGHT, fill=Y)
+    my_listbox.pack(pady=15)
     dataIndex = 0
-    for dataValue in data:
-        text_data = text_data + str(dataIndex) + ". " + dataValue + "\n"
+    for item in data:
+        my_listbox.insert(END, str(dataIndex) + ". " + item)
         dataIndex = dataIndex + 1
-    ###
-    ### option 2
-    #text_data = ""
-    #for dataIndex, dataValue in enumerate(data):
-    #    text_data = text_data + dataIndex + ". " + dataValue + "\n"
-    #    dataIndex = dataIndex + 1
-    ###
-    Label(top_fenetre, text=text_data).pack()
+    Label(top_fenetre, text=text_data).pack(side=TOP, pady= 5)
 
 def supprimer_tache():
     top_fenetre = Toplevel(root)
@@ -85,10 +78,7 @@ check_fichier()
 data = module_lecture()
 
 #Création fenëtre
-root = Tk()
-
-#création de la listbox
-
+root = tk.Tk()
 
 #Paramètre fenêtre
 root.title("PyList GUI V1")
@@ -104,13 +94,13 @@ label_bienvenue = Label(master= boite_titre, text="Bienvenue dans Pylist GUI ", 
 label_bienvenue.pack(pady= 15)
 
 #Boutons
-bouton_ajouter = Button(boite_bouton, text="Ajoutez une tâche", font="Helvetica 12" ,command=ajout_tache)
+bouton_ajouter = Button(boite_bouton, text="Ajoutez une tâche", font="Helvetica 12" ,command=ajout_tache , width = 20)
 bouton_ajouter.pack(pady= 5)
-bouton_voir = Button(boite_bouton, text="Voir les tâches",font="Helvetica 12" ,command=afficher_tache)
+bouton_voir = Button(boite_bouton, text="Voir les tâches",font="Helvetica 12" ,command=afficher_tache , width = 20)
 bouton_voir.pack(pady= 5)
-bouton_supprimer = Button(boite_bouton, text="Supprimer les tâches",font="Helvetica 12" ,command=supprimer_tache)
+bouton_supprimer = Button(boite_bouton, text="Supprimer les tâches",font="Helvetica 12" ,command=supprimer_tache , width = 20)
 bouton_supprimer.pack(pady= 5)
-bouton_quitter = Button(boite_bouton, text="Quitter programe",font="Helvetica 12" ,command=quitter_programme)
+bouton_quitter = Button(boite_bouton, text="Quitter programe",font="Helvetica 12" ,command=quitter_programme , width = 20)
 bouton_quitter.pack(pady= 5)
 
 #Frame
