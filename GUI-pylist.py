@@ -61,15 +61,18 @@ def supprimer_tache():
     my_scrollbar.config(command=my_listbox.yview)
     my_scrollbar.pack(side=RIGHT, fill=Y)
     my_listbox.pack(pady=15)
-    def suppression():
-        selection = my_listbox.curselection()
-        if selection:
-            index = selection[0]
-            my_listbox.delete(index)
-            del data[index]
+    #Ajout contenu de data dans listbox
     for item in data:
         my_listbox.insert(END, item)
-    my_button= Button(top_fenetre, text="Supprimer", command= suppression)
+    #Surfonction de suppression pour le bouton.
+    def suppression():
+        selection = list(my_listbox.curselection())
+        selection.sort(reverse=True)
+        for index in selection:
+            my_listbox.delete(index)
+            del data[index]
+        module_fichier(data)
+    my_button= Button(top_fenetre, text="Supprimer", command= suppression, font="Helvetica 12")
     my_button.pack(side=BOTTOM,pady=10)
         
 def quitter_programme():
